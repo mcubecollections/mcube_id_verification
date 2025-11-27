@@ -69,34 +69,63 @@ async function verifyKycFace({ pinNumber, imageBase64, name }) {
     merchantKey: config.selfie.merchantKey,
   };
 
-  const response = await axios.post(url, payload, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    timeout: 15000,
-  });
+  try {
+    const response = await axios.post(url, payload, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      timeout: 15000,
+    });
 
-  const root = response.data || {};
-  const data = root.data || {};
+    const root = response.data || {};
+    const data = root.data || {};
 
-  const code = String(data.code || root.code || "");
-  const success = Boolean(
-    typeof data.success !== "undefined" ? data.success : root.success
-  );
-  const verifiedStr = String(data.verified || root.verified || "").toUpperCase();
+    const code = String(data.code || root.code || "");
+    const success = Boolean(
+      typeof data.success !== "undefined" ? data.success : root.success
+    );
+    const verifiedStr = String(data.verified || root.verified || "").toUpperCase();
 
-  const isApproved =
-    code === "00" && (verifiedStr === "TRUE" || verifiedStr === "YES" || success);
+    const isApproved =
+      code === "00" && (verifiedStr === "TRUE" || verifiedStr === "YES" || success);
 
-  return {
-    transactionGuid: data.transactionGuid || root.transactionGuid || null,
-    status: isApproved ? "approved" : "failed",
-    code,
-    verified: verifiedStr,
-    success,
-    person: data.person || null,
-    raw: root,
-  };
+    return {
+      transactionGuid: data.transactionGuid || root.transactionGuid || null,
+      status: isApproved ? "approved" : "failed",
+      code,
+      verified: verifiedStr,
+      success,
+      person: data.person || null,
+      raw: root,
+    };
+  } catch (error) {
+    // Handle API validation errors (400, etc.) gracefully
+    if (error.response && error.response.data) {
+      const errorData = error.response.data;
+      const errorMsg = errorData.msg || errorData.message || "Verification failed";
+      const errorCode = errorData.code || "99";
+      
+      console.log('Selfie API validation error:', errorMsg);
+      
+      // Return a failed verification with the API's error message
+      return {
+        transactionGuid: null,
+        status: "failed",
+        code: errorCode,
+        verified: "FALSE",
+        success: false,
+        person: null,
+        raw: {
+          error: true,
+          message: errorMsg,
+          originalError: errorData,
+        },
+      };
+    }
+    
+    // For network errors or other issues, throw the error
+    throw error;
+  }
 }
 
 module.exports = {
