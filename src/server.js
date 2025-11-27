@@ -18,6 +18,11 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "..", "views"));
 
+// In production (Render), trust the first proxy so secure cookies work correctly
+if (config.isProd) {
+  app.set("trust proxy", 1);
+}
+
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
