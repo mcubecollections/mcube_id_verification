@@ -9,14 +9,16 @@ function requireAuth(req, res, next) {
 }
 
 async function initializeDefaultAdmin() {
-  const existing = database.getAdminByUsername("admin");
+  const existing = await database.getAdminByUsername("admin");
   if (!existing) {
     const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || "admin123";
     const hash = await bcrypt.hash(defaultPassword, 10);
-    database.createAdminUser("admin", hash);
+    await database.createAdminUser("admin", hash);
     console.log(
       `Default admin created. Username: admin, Password: ${defaultPassword}`
     );
+  } else {
+    console.log('Default admin user already exists');
   }
 }
 
