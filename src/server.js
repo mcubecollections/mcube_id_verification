@@ -53,11 +53,27 @@ app.use((err, req, res, next) => {
 
 const port = config.port;
 
-adminAuth.initializeDefaultAdmin().then(() => {
-  app.listen(port, () => {
-    console.log(
-      `Selfie verification service listening on port ${port} in ${config.nodeEnv} mode`
-    );
-    console.log(`Admin panel: ${config.app.baseUrl}/admin/dashboard`);
-  });
-});
+// Initialize database and server in correct order
+async function startServer() {
+  try {
+    // 1. Initialize database tables first
+    await database.initializeDatabase();
+    console.log('Database initialization complete');
+    
+    // 2. Initialize default admin user
+    await adminAuth.initializeDefaultAdmin();
+    
+    // 3. Start the server
+    app.listen(port, () => {
+      console.log(
+        `Selfie verification service listening on port ${port} in ${config.nodeEnv} mode`
+      );
+      console.log(`Admin panel: ${config.app.baseUrl}/admin/dashboard`);
+    });
+  } catch (err) {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  }
+}
+
+startServer();

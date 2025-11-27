@@ -130,10 +130,7 @@ async function initializeDatabase() {
   }
 }
 
-// Initialize tables on startup
-initializeDatabase().catch(err => {
-  console.error('Database initialization error:', err);
-});
+// Database initialization will be called explicitly from server.js
 
 function createVerification({
   sessionId,
@@ -368,6 +365,7 @@ function createAdminUser(username, passwordHash) {
 
 module.exports = {
   db,
+  initializeDatabase,
   createVerification,
   getVerificationBySessionId,
   getAllVerifications,
