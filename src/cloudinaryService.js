@@ -19,8 +19,15 @@ async function uploadSelfieImage(base64Image, sessionId) {
       throw new Error('No image provided');
     }
 
+    // Ensure base64 string has proper data URI format
+    let imageDataUri = base64Image;
+    if (!base64Image.startsWith('data:')) {
+      // Assume it's a JPEG if no format is specified
+      imageDataUri = `data:image/jpeg;base64,${base64Image}`;
+    }
+
     // Upload to Cloudinary
-    const result = await cloudinary.uploader.upload(base64Image, {
+    const result = await cloudinary.uploader.upload(imageDataUri, {
       folder: 'mcube_verification_selfies',
       public_id: `selfie_${sessionId}_${Date.now()}`,
       resource_type: 'image',
