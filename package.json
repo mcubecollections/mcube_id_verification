@@ -1,7 +1,7 @@
 {
   "name": "selfie-verification-service",
   "version": "1.0.0",
-  "description": "Selfie/KYC verification service for M'Cube Plus borrowers",
+  "description": "Selfie/KYC verification service for M'Cube borrowers",
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="/assets/mcubePlus.png">
-  <title>Identity Verification | M'Cube Plus</title>
+  <link rel="icon" type="image/png" href="/assets/mcube.png">
+  <title>Identity Verification | M'Cube</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(135deg, #fff8e6 0%, #f8e0b2 50%, #f2c46d 100%);
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #ddd6fe 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -87,7 +87,7 @@
       z-index: 1;
     }
     .step.active .step-circle {
-      background: #c48a1d;
+      background: #7C3AED;
       color: white;
     }
     .step-label {
@@ -96,7 +96,7 @@
       font-weight: 500;
     }
     .step.active .step-label {
-      color: #b47b18;
+      color: #7C3AED;
     }
     .form-content {
       padding: 32px 24px;
@@ -122,8 +122,8 @@
     }
     .form-group input:focus {
       outline: none;
-      border-color: #c48a1d;
-      box-shadow: 0 0 0 3px rgba(196, 138, 29, 0.18);
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
     }
     .form-hint {
       font-size: 0.875rem;
@@ -132,21 +132,21 @@
       line-height: 1.4;
     }
     .file-upload {
-      border: 2px dashed #e3c48a;
+      border: 2px dashed #C4B5FD;
       border-radius: 8px;
       padding: 24px;
       text-align: center;
       transition: all 0.2s;
       cursor: pointer;
-      background: #fdf7ec;
+      background: #faf5ff;
     }
     .file-upload:hover {
-      border-color: #c48a1d;
-      background: #fdf3e0;
+      border-color: #7C3AED;
+      background: #f5f3ff;
     }
     .file-upload.has-file {
-      border-color: #c48a1d;
-      background: #fffaf0;
+      border-color: #7C3AED;
+      background: #faf5ff;
     }
     .file-upload input[type="file"] {
       display: none;
@@ -155,7 +155,7 @@
       width: 48px;
       height: 48px;
       margin: 0 auto 12px;
-      background: #b47b18;
+      background: #7C3AED;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -164,7 +164,7 @@
       font-size: 24px;
     }
     .file-upload.has-file .upload-icon {
-      background: #c48a1d;
+      background: #7C3AED;
     }
     .upload-text {
       font-weight: 600;
@@ -186,19 +186,19 @@
       flex: 1 1 130px;
       padding: 8px 12px;
       border-radius: 9999px;
-      border: 1px solid #e3c48a;
+      border: 1px solid #C4B5FD;
       background: #ffffff;
-      color: #5c3c0a;
+      color: #5B21B6;
       font-size: 0.875rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
     }
     .choice-btn-primary {
-      background: linear-gradient(135deg, #b47b18 0%, #e3b23c 50%, #f7d36b 100%);
-      color: #1f1305;
+      background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #A78BFA 100%);
+      color: #ffffff;
       border-color: transparent;
-      box-shadow: 0 2px 8px rgba(180, 123, 24, 0.35);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
     }
     .choice-btn:hover {
       transform: translateY(-1px);
@@ -219,13 +219,13 @@
       gap: 8px;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #b47b18 0%, #e3b23c 50%, #f7d36b 100%);
-      color: #1f1305;
-      box-shadow: 0 4px 12px rgba(180, 123, 24, 0.45);
+      background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #A78BFA 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
     }
     .btn-primary:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(180, 123, 24, 0.55);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.55);
     }
     .btn-primary:disabled {
       opacity: 0.6;
@@ -313,20 +313,20 @@
       border: 1px solid rgba(249, 250, 251, 0.25);
     }
     .btn-capture {
-      background: linear-gradient(135deg, #b47b18 0%, #e3b23c 50%, #f7d36b 100%);
-      color: #1f1305;
-      box-shadow: 0 3px 10px rgba(180, 123, 24, 0.5);
+      background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 50%, #A78BFA 100%);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.5);
     }
     .info-box {
-      background: #fff8e6;
-      border: 1px solid #f3d08a;
+      background: #faf5ff;
+      border: 1px solid #C4B5FD;
       border-radius: 8px;
       padding: 16px;
       margin-bottom: 24px;
     }
     .info-box-title {
       font-weight: 600;
-      color: #8a5a13;
+      color: #6D28D9;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -334,7 +334,7 @@
     }
     .info-box-text {
       font-size: 0.875rem;
-      color: #5c3c0a;
+      color: #5B21B6;
       line-height: 1.5;
     }
     .error-message {
@@ -383,9 +383,9 @@
 <body>
   <div class="container">
     <div class="header">
-      <img src="/assets/mcubePlus.png" alt="M'Cube Plus" class="logo-mark" />
+      <img src="/assets/mcube.png" alt="M'Cube" class="logo-mark" />
       <h1>Identity Verification</h1>
-      <p>Secure KYC verification powered by M'Cube Plus</p>
+      <p>Secure KYC verification powered by M'Cube</p>
     </div>
 
     <div class="progress-steps">

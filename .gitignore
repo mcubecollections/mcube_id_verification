@@ -2,9 +2,9 @@
 node_modules/
 
 # Environment files
-# .env
-# .env.local
-# .env.*.local
+.env
+.env.*
+*.env
 
 # Database files
 data/
@@ -35,3 +35,7 @@ temp/
 # Test files (optional - uncomment if you don't want to commit tests)
 # test_*.js
 # *_test.js
+
+# Documentation and PDF files
+*.md
+*.pdf
