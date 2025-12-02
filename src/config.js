@@ -26,7 +26,7 @@ module.exports = {
     baseUrl,
     borrowersPortalUrl:
       process.env.BORROWERS_PORTAL_URL ||
-      "https://mcubeplus.com/borrowersaccount/",
+      "https://mcubeholdings.com",
   },
   selfie: {
     baseUrl: process.env.SELFIE_API_BASE_URL || "",
